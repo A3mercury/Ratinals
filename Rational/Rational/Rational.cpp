@@ -16,22 +16,6 @@ const Rational& Rational::operator=(const Rational & rValue)
 	Reduce();
 	return *this;
 }
-
-Rational& Rational::operator++()
-{
-	m_Numerator += m_Denominator;
-	Reduce();
-	return *this;
-}
-
-Rational Rational::operator++(int Garbage)
-{
-	Rational result = *this;
-	m_Numerator += m_Denominator;
-	Reduce();
-	return result;
-}
-
 bool Rational::operator==(const Rational & rValue) const
 {
 	bool result = true;
@@ -41,19 +25,48 @@ bool Rational::operator==(const Rational & rValue) const
 	}
 	return result;
 }
-
-const Rational Rational::operator+ (const Rational & rValue) const
+const Rational operator+ (const long lValue, const Rational & rValue)
 {
-	long lcm = LeastCommonMultiple(rValue.m_Denominator, m_Denominator);
-	long resultNumerator = (m_Numerator * (lcm / m_Denominator)) +
-		(rValue.m_Numerator * (lcm / rValue.m_Denominator));
-	Rational result(resultNumerator, lcm);
-	return result;
+	Rational newLValue(lValue);
+	return newLValue + rValue;
+}
+const Rational operator- (const long lValue, const Rational & rValue)
+{
+	Rational newLValue(lValue);
+	return newLValue - rValue;
+}
+const Rational operator* (const long lValue, const Rational & rValue)
+{
+	Rational newLValue(lValue);
+	return newLValue * rValue;
+}
+const Rational operator/ (const long lValue, const Rational & rValue)
+{
+	Rational newLValue(lValue);
+	return newLValue / rValue;
 }
 
 Rational& Rational::operator+= (const Rational & rValue)
 {
 	*this = *this + rValue;
+	Reduce();
+	return *this;
+}
+Rational& Rational::operator-= (const Rational& rValue)
+{
+	*this = *this - rValue;
+	Reduce();
+	return *this;
+}
+Rational& Rational::operator*= (const Rational& rValue)
+{
+	*this = *this * rValue;
+	Reduce();
+	return *this;
+}
+Rational& Rational::operator/= (const Rational& rValue)
+{
+	*this = *this / rValue;
 	Reduce();
 	return *this;
 }
@@ -63,6 +76,46 @@ string Rational::operator()() const
 	std::stringstream stream;
 	stream << m_Numerator << "/" << m_Denominator;
 	return stream.str();
+}
+Rational::operator double() const
+{
+
+}
+
+Rational& Rational::operator++()
+{
+	m_Numerator += m_Denominator;
+	Reduce();
+	return *this;
+}
+Rational& Rational::operator--()
+{
+	m_Numerator -= m_Denominator;
+	Reduce();
+	return *this;
+}
+Rational Rational::operator++(int Garbage)
+{
+	Rational result = *this;
+	m_Numerator += m_Denominator;
+	Reduce();
+	return result;
+}
+Rational Rational::operator--(int Garbage)
+{
+	Rational result = *this;
+	m_Numerator -= m_Denominator;
+	Reduce();
+	return result;
+}
+
+long Rational::getNumerator()const
+{
+	return m_Numerator;
+}
+long Rational::getDenominator()const
+{
+	return m_Denominator;
 }
 
 long Rational::LeastCommonMultiple(long x, long y) const
@@ -84,7 +137,6 @@ long Rational::LeastCommonMultiple(long x, long y) const
 
 	return Guess;
 }
-
 long Rational::GreatestCommonDivisor(long x, long y) const
 {
 	long Remainder = x % y;
@@ -98,7 +150,6 @@ long Rational::GreatestCommonDivisor(long x, long y) const
 
 	return y;
 }
-
 void Rational::Reduce()
 {
 	long GCD = GreatestCommonDivisor(m_Numerator, m_Denominator);
@@ -112,7 +163,6 @@ ostream &operator<<(ostream & out, const Rational & Fraction)
 	out << Fraction.getNumerator() << "/" << Fraction.getDenominator();
 	return out;
 }
-
 istream &operator>>(istream & in, Rational & Fraction)
 {
 	int n;
@@ -122,37 +172,35 @@ istream &operator>>(istream & in, Rational & Fraction)
 	in >> n >> c >> d;
 }
 
-long Rational::getNumerator()const
+const Rational Rational::operator+ (const Rational& rValue) const
 {
-	return m_Numerator;
+	long lcm = LeastCommonMultiple(rValue.m_Denominator, m_Denominator);
+	long resultNumerator = (m_Numerator * (lcm / m_Denominator)) +
+		(rValue.m_Numerator * (lcm / rValue.m_Denominator));
+	Rational result(resultNumerator, lcm);
+	return result;
 }
-
-long Rational::getDenominator()const
+const Rational Rational::operator- (const Rational& rValue) const
 {
-	return m_Denominator;
+	long lcm = LeastCommonMultiple(rValue.m_Denominator, m_Denominator);
+	long resultNumerator = (m_Numerator * (lcm / m_Denominator)) -
+		(rValue.m_Numerator * (lcm / rValue.m_Denominator));
+	Rational result(resultNumerator, lcm);
+	return result;
 }
-
-const Rational operator+ (const long lValue, const Rational & rValue)
+const Rational Rational::operator* (const Rational& rValue) const
 {
-	Rational newLValue(lValue);
-	return newLValue + rValue;
+	long lcm = LeastCommonMultiple(rValue.m_Denominator, m_Denominator);
+	long resultNumerator = (m_Numerator * (lcm / m_Denominator)) *
+		(rValue.m_Numerator * (lcm / rValue.m_Denominator));
+	Rational result(resultNumerator, lcm);
+	return result;
 }
-
-const Rational operator- (const long lValue, const Rational & rValue)
+const Rational Rational::operator/ (const Rational& rValue) const
 {
-	Rational newLValue(lValue);
-	return newLValue - rValue;
+	long lcm = LeastCommonMultiple(rValue.m_Denominator, m_Denominator);
+	long resultNumerator = (m_Numerator * (lcm / m_Denominator)) /
+		(rValue.m_Numerator * (lcm / rValue.m_Denominator));
+	Rational result(resultNumerator, lcm);
+	return result;
 }
-
-const Rational operator* (const long lValue, const Rational & rValue)
-{
-	Rational newLValue(lValue);
-	return newLValue * rValue;
-}
-
-const Rational operator/ (const long lValue, const Rational & rValue)
-{
-	Rational newLValue(lValue);
-	return newLValue / rValue;
-}
-
