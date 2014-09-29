@@ -1,0 +1,21 @@
+﻿Build started 9/26/2014 1:49:06 PM.
+     1>Project "C:\Users\A5mer_000\Source\Repos\PostFixExpression\Templates\Templates\Templates.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 13.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\A5mer_000\Source\Repos\PostFixExpression\Templates\Debug\Templates.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\A5mer_000\Source\Repos\PostFixExpression\Templates\Debug\Templates.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\A5mer_000\Source\Repos\PostFixExpression\Templates\Debug\Templates.lib" /MACHINE:X86 Debug\Pile.obj
+         Debug\Source.obj
+     1>Source.obj : error LNK2019: unresolved external symbol "public: __thiscall Pile<int>::Pile<int>(void)" (??0?$Pile@H@@QAE@XZ) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall Pile<int>::~Pile<int>(void)" (??1?$Pile@H@@UAE@XZ) referenced in function "public: virtual void * __thiscall Pile<int>::`scalar deleting destructor'(unsigned int)" (??_G?$Pile@H@@UAEPAXI@Z)
+     1>Source.obj : error LNK2019: unresolved external symbol "public: void __thiscall Pile<int>::Toss(int)" (?Toss@?$Pile@H@@QAEXH@Z) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: int __thiscall Pile<int>::Burn(void)" (?Burn@?$Pile@H@@QAEHXZ) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: int __thiscall Pile<int>::getCount(void)const " (?getCount@?$Pile@H@@QBEHXZ) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: __thiscall Pile<double>::Pile<double>(void)" (??0?$Pile@N@@QAE@XZ) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall Pile<double>::~Pile<double>(void)" (??1?$Pile@N@@UAE@XZ) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: __thiscall Pile<class Pile<int> >::Pile<class Pile<int> >(void)" (??0?$Pile@V?$Pile@H@@@@QAE@XZ) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall Pile<class Pile<int> >::~Pile<class Pile<int> >(void)" (??1?$Pile@V?$Pile@H@@@@UAE@XZ) referenced in function _main
+     1>Source.obj : error LNK2019: unresolved external symbol "public: void __thiscall Pile<class Pile<int> >::Toss(class Pile<int>)" (?Toss@?$Pile@V?$Pile@H@@@@QAEXV?$Pile@H@@@Z) referenced in function _main
+     1>C:\Users\A5mer_000\Source\Repos\PostFixExpression\Templates\Debug\Templates.exe : fatal error LNK1120: 10 unresolved externals
+     1>Done Building Project "C:\Users\A5mer_000\Source\Repos\PostFixExpression\Templates\Templates\Templates.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.23
